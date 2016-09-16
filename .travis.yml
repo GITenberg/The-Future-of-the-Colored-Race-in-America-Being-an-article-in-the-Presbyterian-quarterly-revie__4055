@@ -1,0 +1,61 @@
+sudo: required
+dist: trusty
+language: ruby
+
+before_install:
+before_install:
+- gem install asciidoctor -v 1.5.2
+- gem install tilt
+- sudo pip install git+https://github.com/gitenberg-dev/gitberg
+- sudo pip install pillow
+- sudo pip install cssutils
+- sudo pip install docutils
+- sudo pip install roman
+- sudo pip install git+https://github.com/gitenberg-dev/pg-epubmaker
+script:
+- VERSION=`ruby -e "require 'yaml'; meta = YAML.load_file('metadata.yaml'); puts meta['_version'];"`
+- git clone https://github.com/gitenberg-dev/asciidoctor-htmlbook.git
+- sudo pip install -r asciidoctor-htmlbook/gitberg-machine/requirements.txt
+
+- /usr/bin/python -c "from gitenberg import travis; travis.build_epub()"
+- ebook-convert book.epub book.mobi
+- xvfb-run ebook-convert book.epub book.pdf
+branches:
+  only:
+  - master
+notifications:
+  webhooks:
+    urls:
+      - https://unglue.it/api/travisci/webhook
+    on_success: always
+    on_failure: never
+    on_start: never
+deploy:
+  skip_cleanup: true
+  provider: releases
+  api_key:
+    secure: eQXpo351hbnPKUjjJ7/4xNU8D1SeKXJkKKbgovOx0Lm8RnpyNoh9bju9TJ8Y43h6N5E16Bw7pu06sbTfINunUnsRcBnqqeDZxQE6MlGd0s0sTkDFKYg64xz//WBl649a/9AOdRfQb9rQ2f+QNIJlKFx49mY8uIMzarM0ZAAg2HY9KCl47Uk6STWOQhru/8ocVU/YsaiZb3urlBMC5r2znBN/ZYltw8NFtGgqCCR78x64eQxUuUI3woiQAmah6M4UNIjDp7VQvALFDctPbQ9wKgg8+yD3+3/syasxvosgCSBENpXjBpIR0kXDjSEzS88wPVjDJQbzpprMJsGR+Kaargjg2l84iWJ2+cXqgyjiteAIj906vMFcyyG66kYEc4NeYoVU0sQz15XIc6sI8DX9xO5cSVP1cuaJ90ixL9p0+f/zZRKaBIj69zULwxGBNOQo2qjS4h568wsXTQuNrVidFUuenm9oljKjND/n5CE9My2S2gc+g6iLEM0j74wT2amkbAQmHGqs5zR90wZ/WGBDh4gsZF+11zmEnvjoQfSgFxNhf3VslAUnY+DCbImMzdY/BMmAKafGAcDsRgdJCWjXtGSTxPcaGOmGiScxnKLi1f/zH+IFZF88n6v7V/c/wq09DOfVnTv1WY6rtsegC9FWxSVJ2fMSYN13CuVZKPQ/Ur8=
+  file:
+    - book.epub
+    - book.mobi
+    - book.pdf
+  "on":
+    repo: GITenberg/The-Future-of-the-Colored-Race-in-America-Being-an-article-in-the-Presbyterian-quarterly-revie__4055
+addons:
+  apt:
+    packages:
+    - xsltproc
+    - xvfb
+    - calibre
+    - python-pip
+    - git
+    - python-dev
+    - libjpeg-dev
+    - libpng-dev
+    - libfreetype6
+    - libfreetype6-dev
+    - zlib1g-dev
+    - python-lxml
+    - libxml2-dev
+    - libxslt1-dev
+    - tidy
