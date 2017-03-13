@@ -1,5 +1,8 @@
 _repo: The-Future-of-the-Colored-Race-in-America-Being-an-article-in-the-Presbyterian-quarterly-revie__4055
-_version: 0.1.0
+_version: 0.2.0
+covers:
+- cover_type: generated
+  image_path: cover.png
 creator:
   author:
     agent_name: Aikman, William
@@ -13,6 +16,8 @@ description: Travel back in time to the midst of Civil War-torn America and get 
   relations and grappling with the issue of how African-Americans would fare in the
   aftermath of the war. This thought-provoking essay from writer and pastor William
   Aikman is a compelling document of a turbulent period in U.S. history.
+edition_identifiers:
+  edition_id: http://www.gutenberg.org/ebooks/4055#The-Future-of-the-Colored-Race-in-America-Being-an-article-in-the-Presbyterian-quarterly-revie_
 gutenberg_issued: '2003-05-01'
 gutenberg_type: Text
 identifiers:
