@@ -1,5 +1,5 @@
 _repo: The-Future-of-the-Colored-Race-in-America-Being-an-article-in-the-Presbyterian-quarterly-revie__4055
-_version: 0.2.0
+_version: 0.2.1
 covers:
 - cover_type: generated
   image_path: cover.png
@@ -30,6 +30,7 @@ subjects:
 - !lcsh 'African Americans'
 - !lcsh 'Slavery -- United States'
 - !lcc 'E456'
+- GITenberg
 title: "The Future of the Colored Race in America\r\nBeing an article in the Presbyterian\
   \ quarterly review of July, 1862"
 url: http://www.gutenberg.org/ebooks/4055
